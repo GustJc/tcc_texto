@@ -1,0 +1,45 @@
+\chapter[Delimitação do Assunto]{Delimitação do Assunto}
+
+Aqui serão representados o que este trabalho propõe-se a desenvolver e que resultados podem ser esperados através do uso da ferramenta a ser desenvolvida.
+
+\section{Proposta}
+
+Construir uma ferramenta capaz de medir a qualidade esperada de um mapa ou algoritmo procedural.
+Propõe-se também a longo prazo, durante a segunda etapa do trabalho mostrar os benefícios que conteúdos procedurais trazem a jogos e uma comparação entre mapas feitos manualmente e automaticamente para demonstrar a diferença de qualidade entre os dois modelos de construção de mapas. 
+
+\section{Ferramenta a ser desenvolvida}
+
+A principal ferramenta a ser desenvolvida auferirá a qualidade de um mapa carregado através de um arquivo externo com o seu devido formato. A partir de entradas sobre os valores esperados pelo usuário da ferramenta, ela irá gerar saídas sobre a qualidade do mapa em relação aqueles quesitos especificados e aos diversos perfis de usuário.
+
+A ferramenta também terá suporte à carga de algoritmos de geração de mapas através da sua codificação de arquivos externos no formato \textit{lua}, evitando o desgaste de ter que formatar cada um dos mapas para o formato da ferramenta e testá-los um a um. 
+
+\subsection{Especificações}
+O sistema deve ser capaz de obter um valor desejado para cada uma das métricas que estará testando a fim de garantir que o mapa estará a qualidade desejada para aquele propósito.
+
+O sistema desenvolvido deverá ser capaz de ler de um arquivo externo, de acordo com uma formatação pré-estabelecida e a partir dele carregar um mapa e o posicionamento de inimigos e ítens.
+
+A ferramenta deverá ser capaz de simular jogos, baseados em regras simples do gênero, para testar tais mapas.
+
+Deverá analisar diversos jogos utilizando uma IA customizada para simular os diversos perfis de usuários encontrados.
+
+Extrair métricas de $N$ jogos simulados e compilá-las em um parâmetro de qualidade, baseado nos valores esperados.
+
+Deverá ser capaz carregar algoritmos de geração mapas escritos em \textit{lua} para que possam ser testado a qualidade do algoritmo como um todo  a partir dos mapas gerados por ele.
+
+Deverá entender a padronização de ítens e inimigos em arquivos lua separados, para que possa escrever a criação dos mapas de forma mais clara e limpa.
+
+\subsection{Escopo}
+
+Está dentro do escopo a criação de uma ferramenta capaz de simular regras básicas de um jogo, e extrair métricas a partir dele. 
+
+Está no escopo a criação de mapas baseados em arquivos ou algoritmos externos, dado que estejam no devido formato entendido pelo sistema.
+
+Está no escopo a obtenção de uma métrica de qualidade para um devido mapa ou algoritmo testado.
+
+\subsection{Não Escopo}
+
+Não está no escopo deste projeto desenvolver um jogo completo, ou qualquer tipo de jogo. A simulação representado pela ferramenta, apesar de ser jogável, contém apenas os requisitos básicos para se testar uma amostra genérica dos atributos contidos em um jogo do gênero.
+
+Não está no escopo a criação de algoritmos procedurais novos e otimizados, apesar de que serão utilizados algoritmos procedurais para gerar as entradas da ferramenta. Estes não serão completamente inventados ou otimizados e representarão diferentes tipos de geração procedural para dar a diversidade ao se testar a ferramenta e garantir que ela funciona apesar da diferença estrutural entre no que diz respeito à mapas.
+
+Não está no escopo a criação de algoritmos de inteligência artificial completamente inéditos. Algoritmos de caminhos como \textit{A*} ou \textit{Depth First Search} serão utilizados com ligeiras alterações para se adaptarem ao sistema. 
