@@ -1,40 +1,37 @@
 \chapter[Delimitação do Assunto]{Delimitação do Assunto}
 
-Aqui serão representados o que este trabalho propõe-se a desenvolver e que resultados podem ser esperados através do uso da ferramenta a ser desenvolvida.
+Aqui serão representados o que este trabalho propõe-se a desenvolver e quais resultados podem ser esperados através do uso da ferramenta a ser desenvolvida.
 
 \section{Proposta}
 
 Construir uma ferramenta capaz de medir a qualidade esperada de um mapa ou algoritmo procedural.
-Propõe-se também a longo prazo, durante a segunda etapa do trabalho mostrar os benefícios que conteúdos procedurais trazem a jogos e uma comparação entre mapas feitos manualmente e automaticamente para demonstrar a diferença de qualidade entre os dois modelos de construção de mapas. 
+Propõe-se também a longo prazo, mostrar os benefícios que conteúdos procedurais trazem a jogos e uma comparação entre mapas feitos manualmente e automaticamente para demonstrar a diferença de qualidade entre os dois modelos de construção de mapas. 
 
-\section{Ferramenta a ser desenvolvida}
+\section{Ferramentas desenvolvidas}
 
-A principal ferramenta a ser desenvolvida auferirá a qualidade de um mapa carregado através de um arquivo externo com o seu devido formato. A partir de entradas sobre os valores esperados pelo usuário da ferramenta, ela irá gerar saídas sobre a qualidade do mapa em relação aqueles quesitos especificados e aos diversos perfis de usuário.
+A principal ferramenta desenvolvida auferirá a qualidade de um mapa carregado através de um arquivo externo com o seu devido formato. A partir de entradas sobre os valores esperados pelo usuário da ferramenta, ela irá gerar saídas sobre a qualidade do mapa em relação aqueles quesitos especificados e aos diversos perfis de usuário.
 
 A ferramenta também terá suporte à carga de algoritmos de geração de mapas através da sua codificação de arquivos externos no formato \textit{lua}, evitando o desgaste de ter que formatar cada um dos mapas para o formato da ferramenta e testá-los um a um. 
 
+Uma ferramenta auxiliar para a criação de mapas manuais e para criação e testes de algoritmos de criação procedurais em \textit{lua}. Contendo também um editor de \textit{scripts} com uma listagem de comandos e variáveis que podem ser entendidas pela ferramenta para se gerar o mapa através dele.
+
 \subsection{Especificações}
-O sistema deve ser capaz de obter um valor desejado para cada uma das métricas que estará testando a fim de garantir que o mapa estará a qualidade desejada para aquele propósito.
+\begin{itemize}
+\item O sistema deve ser capaz de obter um valor desejado para cada uma das métricas que estará testando a fim de garantir que o mapa estará a qualidade desejada para aquele propósito.
+\item Deverá permitir que seja dado um peso para cada métrica, aferindo peso 0 para métricas indesejadas.
+\item Ler um arquivo externo, de acordo com a formatação pré-estabelecida e carregar a partir dele um mapa com o posicionamento de inimigos e itens.
+\item A ferramenta deverá ser capaz de simular jogos, baseados em regras simples do gênero, para testar os mapas.
+\item Deverá analisar diversos jogos utilizando uma IA customizada para simular os diversos perfis de usuários encontrados.
+\item Extrair métricas de diversos jogos simulados e compilá-las em um parâmetro de qualidade, baseado nos valores esperados.
+\item Deverá ser capaz carregar algoritmos de geração mapas escritos em \textit{lua} para que possam ser testado a qualidade do algoritmo como um todo  a partir dos mapas gerados por ele.
+\item Deverá entender a padronização de ítens e inimigos em arquivos lua separados, para que possa escrever a criação dos mapas de forma mais clara e limpa.
+\end{itemize}
 
-O sistema desenvolvido deverá ser capaz de ler de um arquivo externo, de acordo com uma formatação pré-estabelecida e a partir dele carregar um mapa e o posicionamento de inimigos e ítens.
 
-A ferramenta deverá ser capaz de simular jogos, baseados em regras simples do gênero, para testar tais mapas.
-
-Deverá analisar diversos jogos utilizando uma IA customizada para simular os diversos perfis de usuários encontrados.
-
-Extrair métricas de $N$ jogos simulados e compilá-las em um parâmetro de qualidade, baseado nos valores esperados.
-
-Deverá ser capaz carregar algoritmos de geração mapas escritos em \textit{lua} para que possam ser testado a qualidade do algoritmo como um todo  a partir dos mapas gerados por ele.
-
-Deverá entender a padronização de ítens e inimigos em arquivos lua separados, para que possa escrever a criação dos mapas de forma mais clara e limpa.
 
 \subsection{Escopo}
 
-Está dentro do escopo a criação de uma ferramenta capaz de simular regras básicas de um jogo, e extrair métricas a partir dele. 
-
-Está no escopo a criação de mapas baseados em arquivos ou algoritmos externos, dado que estejam no devido formato entendido pelo sistema.
-
-Está no escopo a obtenção de uma métrica de qualidade para um devido mapa ou algoritmo testado.
+Está dentro do escopo a criação de uma ferramenta capaz de simular regras básicas de um jogo e extrair métricas a partir dele. A criação de mapas baseados em arquivos ou algoritmos externos, dado que estejam no devido formato entendido pelo sistema. E a obtenção de uma métrica de qualidade para um devido mapa ou algoritmo testado.
 
 \subsection{Não Escopo}
 
@@ -43,3 +40,15 @@ Não está no escopo deste projeto desenvolver um jogo completo, ou qualquer tip
 Não está no escopo a criação de algoritmos procedurais novos e otimizados, apesar de que serão utilizados algoritmos procedurais para gerar as entradas da ferramenta. Estes não serão completamente inventados ou otimizados e representarão diferentes tipos de geração procedural para dar a diversidade ao se testar a ferramenta e garantir que ela funciona apesar da diferença estrutural entre no que diz respeito à mapas.
 
 Não está no escopo a criação de algoritmos de inteligência artificial completamente inéditos. Algoritmos de caminhos como \textit{A*} ou \textit{Depth First Search} serão utilizados com ligeiras alterações para se adaptarem ao sistema. 
+
+\subsection{\textit{Meta-Engine} - Ferramenta principal}
+
+A principal ferramenta do sistema é responsável por rodar simulações sobre um dado mapa e aferir a qualidade do mesmo através de uma série de parâmetros definidos pelo usuário. Ela possui uma interface de comandos shell chamada pela tecla ';' que permite a execução de comandos simples do sistema como para alterar a velocidade de processamento da IA. 
+
+Esta ferramenta é permite o carregamento tanto de mapas salvos ou a geração de mapas "instantâneos", criados na hora através de um algoritmo procedural de geração de mapas codificado em \textit{scripts lua}. Pode-se também escolher o número de vezes que um determinado mapa irá ser executado para a coleta das métricas. Os mapas simulados podem ser jogados através de jogos automatizados ou manuais, isto é, por comandos do jogador. 
+
+\subsection{\textit{Map Builder} - Ferramenta auxiliar}
+
+Esta ferramenta permite a criação de mapas de forma intuitiva e possui algumas ferramentas básicas de edição para o auxilio da produção de mapas. Ela permite a criação e posicionamento de inimigos e itens, pontos de entrada e saída do mapa, e especificação de passagem ou não por um determinado bloco. Todos os comandos e operações são visuais e facilmente vistas.
+
+Possui também um editor textual capaz de identificar a sintaxe léxica da linguagem \textit{lua} e disponibilizando um dicionário de comandos entendidos pelas ferramentas para a criação dos mapas e a descrições de suas utilizações. Permite também que o algoritmos criado seja executado em tempo real e altere o mapa na área principal do programa, identificando erros de sintaxe ou de execução do \textit{scrip} caso ocorram e indicando sua linha.

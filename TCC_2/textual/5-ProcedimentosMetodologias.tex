@@ -1,14 +1,14 @@
 \chapter[Procedimentos Metodológicos e Técnicas]{Procedimentos Metodologia e Técnicas}
 
-Estarão citadas aqui as formas e técnicas que serão utilizadas para a realização deste trabalho, e quaisquer outras formas metodológicas utilizadas durante o desenvolvimento do mesmo. 
+Estarão citadas aqui as formas e técnicas que foram utilizadas para a realização deste trabalho, e quaisquer outras formas metodológicas utilizadas durante o desenvolvimento do mesmo. 
 
 \section{O Processo de Desenvolvimento}
 
-O sistema será desenvolvido baseando-se em uma forma mais simples da metodologia ágil SCRUM. Utilizando uma metodologia ágil de desenvolvimento, o projeto terá pequenas iterações incrementais de uma semana com um valor visível, ou seja, com mudanças aparentes ou novas funcionalidades implementadas. 
+O sistema será desenvolvido baseando-se em uma forma mais simples da metodologia ágil SCRUM. Utilizando uma metodologia ágil de desenvolvimento, o projeto teve pequenas iterações incrementais de uma semana com um valor visível, ou seja, com mudanças aparentes ou novas funcionalidades implementadas. 
 
-Ao final de cada semana, haverá uma revisão do trabalho com o que foi realizado e o que ainda precisa ser realizado, aonde será planejado o que se fazer para a próxima iteração. 
+Ao final de cada semana, houve uma revisão do trabalho com o que foi realizado e o que ainda precisa ser realizado, aonde foi planejado o que se fazer para a próxima iteração. 
 
-Não haverá programação em pares devido a restrições do trabalho e não haverá reuniões diárias pelo fato de não haver um \textit{scrum master} associado ao projeto e nem um cliente em si. As revisões semanais das iterações serão realizadas com o orientador do projeto que servirá de uma forma similar a um cliente e \textit{scrum master}, dando opiniões e comentários sobre o andamento do projeto.
+Não houve programação em pares devido a restrições do trabalho e não houve reuniões diárias pelo fato de não haver um \textit{scrum master} associado ao projeto e nem um cliente em si. As revisões semanais das iterações foram realizadas com o orientador do projeto que serviram de uma forma similar a um cliente e \textit{scrum master}, dando opiniões e comentários sobre o andamento do projeto.
 
 \section{A API Gráfica do Sistema}
 
@@ -60,11 +60,15 @@ Um breve comparativo entre SDL e SFML foi realizado, cujos resultados estão com
 
 Por fim, foi escolhido a utilização da SFML devido a suas facilidades, orientação a objetos nativa e objetos primitivos pré-construidos como classes para representação de textos e gráficos.
 
+Foi também utilizado a biblioteca Qt 5 para o interfaceamento gráfico, principalmente da ferramenta auxiliar. O Qt disponibiliza diversas características comuns para janelas como menus, botões, e outros padrões gráficos que usuários estão acostumados a esperar de ferramentas. A utilização desta biblioteca torna ferramenta o mais intuitiva e efetiva possível, enquanto as API's citadas acima, que são muito bem utilizadas para jogos, falham em ter uma padronização de interface, dando a liberdade ao programador de faze-las, o que para o contexto de um jogo é algo desejável. Por isso foi-se utilizado o SFML para a produção dos gráficos e contextos da simulação e o Qt para a produção da ferramenta.
+
 \section{Simulação}
 
-A simulação do jogo presente na ferramenta consta de regras básicas para que se possa testar, da forma mais genérica possível, jogos do gênero \textit{roguelike}. O jogador iniciará em um nível carregado a partir de um arquivo externo ou gerado por um algoritmo procedural lido pela ferramenta. O nível carregado deverá ter, mínimamente, um ponto de entrada e um ponto de saída, podendo também haver uma série de inimigos e ítens de diferentes atributos espalhados pelo mapa. 
+O primeiro passo para o projeto foi a construção de uma ferramenta confiável que permitisse um ambiente de simulação controlado para os testes que devem ser executados sobre o mapa. E o jogo, apesar de simplificada, deve conter os elementos principais de um rogo \textit{roguelike} para poder-se comparar a efetividade de cada mapa para este gênero.
 
-Para facilitar o entendimento do sistema os ítens estarão limitados a ítens de recuperação, que aumentarão a quantidade de vida do jogador, e ítens de atributos, que aumentarão a quantidade de ataque ou defesa do jogador até o termino do nível, se coletados.
+A simulação do jogo presente na ferramenta principal consta de regras básicas para que se possa testar, da forma mais genérica possível, jogos do gênero \textit{roguelike}. O jogador iniciará em um nível carregado a partir de um arquivo externo ou gerado por um algoritmo procedural lido pela ferramenta. O nível carregado deverá ter, mínimamente, um ponto de entrada e um ponto de saída, podendo também haver uma série de inimigos e itens de diferentes atributos espalhados pelo mapa. 
+
+Para facilitar o entendimento do sistema os itens estarão limitados a itens de recuperação, que aumentarão a quantidade de vida do jogador, e itens de atributos, que aumentarão a quantidade de ataque ou defesa do jogador até o termino do nível, se coletados.
 
 \subsection{Turnos}
 A simulação se desenvolve em turnos. Um turno só ocorrerá caso o jogador faça um movimento, que pode ser um movimento a um espaço vazio ao seu redor, ou um ataque a um inimigo adjacente. Ao realizar um turno, todos os outros inimigos do mapa irão também realizar seus turnos e mover-se em direção ao jogador para atacá-lo, caso estejam em sua área de observação. 
@@ -82,9 +86,9 @@ Para o caso do jogador se mover e o inimigo não atingir o seu valor de custo pa
 
 \subsection{Mapas}
 
-O mapa é dividido em \textit{tiles} (blocos). Cada bloco é representado por um quadrado que pode ser passável ou não. Em cada bloco pode haver até um item ou um inimigo ao mesmo tempo. Jogadores ao passarem por cima de ítens, irão consumí-los para aumentar seus atributos ou recuperar sua vida. E não poderá haver jogadores e inimigos coexistindo ao mesmo tempo em um bloco, havendo um ataque caso um inimigo ou jogador esteja tentando se mover para um bloco ocupado.
+O mapa é dividido em \textit{tiles} (blocos). Cada bloco é representado por um quadrado que pode ser passável ou não. Em cada bloco pode haver até um item ou um inimigo ao mesmo tempo. Jogadores ao passarem por cima de itens, irão consumí-los para aumentar seus atributos ou recuperar sua vida. E não poderá haver jogadores e inimigos coexistindo ao mesmo tempo em um bloco, havendo um ataque caso um inimigo ou jogador esteja tentando se mover para um bloco ocupado.
 
-A ferramenta terá a capacidade de leitura de um arquivo externo \textit{.map}, que nada mais é que um arquivo de texto com a devida formatação entendida pelo sistema. O arquivo terá informações sobre a localidade inicial do jogador, os blocos do mapas e possíveis inimigos e ítens espalhados por ele.
+A ferramenta terá a capacidade de leitura de um arquivo externo \textit{.map}, que nada mais é que um arquivo de texto com a devida formatação entendida pelo sistema. O arquivo terá informações sobre a localidade inicial do jogador, os blocos do mapas e possíveis inimigos e itens espalhados por ele.
 
 \subsubsection{Blocos}
 Os primeiros valores do arquivo representam a disposição do mapa em relação ao seu tamanho, posição inicial do jogador, tipos e gráficos dos blocos.
@@ -118,12 +122,12 @@ O segundo identificador $tipo$ é o representativo visual que o bloco terá dent
 
 \subsubsection{Inimigos e Itens}
 
-Uma linha imediatamente após o último bloco ser descrito no arquivo \textit{.map}, haverá então os ítens e inimigos presentes no mapa.
-Ao contrário dos blocos, os inimigos e ítens não precisam ser dispostos seqüencialmente de acordo com suas posições e podem estar intercalados entre si.
+Uma linha imediatamente após o último bloco ser descrito no arquivo \textit{.map}, haverá então os itens e inimigos presentes no mapa.
+Ao contrário dos blocos, os inimigos e itens não precisam ser dispostos seqüencialmente de acordo com suas posições e podem estar intercalados entre si.
 
 Existem 3 variações possíveis de entradas nesta parte do formato. Elas são identificadas por uma linha contendo os seguintes textos:
 \begin{itemize}
-	\item ``\textit{Item}:'' - Ítens de recuperação de vida ou de incrementos de atributos.
+	\item ``\textit{Item}:'' - Itens de recuperação de vida ou de incrementos de atributos.
 	\item ``\textit{Gold}:'' - Dinheiro, para simulação dos benefícios do nível.
 	\item ``\textit{Enemy}:'' - Inimigos.
 \end{itemize}
@@ -131,7 +135,7 @@ Existem 3 variações possíveis de entradas nesta parte do formato. Elas são i
 A linha subseqüente a um destes três textos conterá uma seqüencia de valores representando suas características. Em todos os três casos, os valores iniciam-se por dois identificados: $x$,$y$, representando as coordenadas do bloco $x$, $y$ em que serão colocados.
 \subsubsubsection{\textit{Gold} - Dinheiro} 
 O mais simples deles, contém apenas mais uma variável $g$ que representa a quantidade de dinheiro. O \textit{sprite} escolhido para o dinheiro é automaticamente
-definido pelo sistema. Os primeiros seis \textit{sprites} do mapa de ítens representam os estados do dinheiro, que são definido como:
+definido pelo sistema. Os primeiros seis \textit{sprites} do mapa de itens representam os estados do dinheiro, que são definido como:
 \begin{itemize}
 	
 	\item 1-5g -    \textit{Sprite} 0
@@ -186,9 +190,9 @@ Enemy:
 
 \subsection{Visibilidade}
 
-É muito comum no gênero \textit{roguelike} o conceito de visibilidade. Um mapa começa escondido e o jogador só pode ver seus ítens, inimigos e blocos caso estes estejam em seu campo de visão. 
+É muito comum no gênero \textit{roguelike} o conceito de visibilidade. Um mapa começa escondido e o jogador só pode ver seus itens, inimigos e blocos caso estes estejam em seu campo de visão. 
 
-Existem porém dois tipos de visibilidade. A visibilidade de terreno, ou visibilidade parcial, que identifica o tipo de bloco e ítens sobre ele no momento de sua última visualização. Estes blocos costumam ser representados visualmente mais escuros para haver uma diferenciação, e a visibilidade total, onde pode-se ver tudo que está acontecendo naquele espaço. 
+Existem porém dois tipos de visibilidade. A visibilidade de terreno, ou visibilidade parcial, que identifica o tipo de bloco e itens sobre ele no momento de sua última visualização. Estes blocos costumam ser representados visualmente mais escuros para haver uma diferenciação, e a visibilidade total, onde pode-se ver tudo que está acontecendo naquele espaço. 
 
 A visibilidade é um importante fator de jogabilidade em \textit{roguelikes}, uma vez que muda o modo de pensar e agir de jogadores. Como eles não sabem aonde está a saída, eles devem explorar o mapa às cegas, sem conhecimento do que esta por vir, até que encontrem a saída. 
 
@@ -258,7 +262,7 @@ Os principais perfis que pode-se observar em jogadores através de diversos víd
 
 \begin{itemize}
 	\item \textbf{Explorador} - Aquele jogador que não quer deixar nada para traz, e gosta de explorar o máximo possível do mapa.
-	\item \textbf{Ganâncioso} - Aquele jogador que fará tudo para conseguir mais dinheiro ou ítens em um mapa. 
+	\item \textbf{Ganâncioso} - Aquele jogador que fará tudo para conseguir mais dinheiro ou itens em um mapa. 
 	\item \textbf{Corredor} - Aquele jogador que só entra em combate quando extremamente necessário, evitando-os caso possa.
 	\item \textbf{Corajoso} - Não deixa nenhum inimigo para tráz, enfrentando todos os inimigos em seu caminho.
 	\item \textbf{Esperto} - Um meio termo entro os outros perfis: analisa os riscos e evita batalhas as quais está em desvantagem.
@@ -293,9 +297,9 @@ Em seguida é executado um algoritmo similar ao \textit{Depth First Search} \cit
 
 O \textit{script} então procura por vários possíveis destinos. A cada nó descoberto é feita uma análise para identificar que tipo de bloco e que objetos estão sobre ele, a partir das seguintes regras:
 \begin{itemize}
-	\item \textbf{Bloco já visto e sem ítens ou inimigos} - Nada a fazer
+	\item \textbf{Bloco já visto e sem itens ou inimigos} - Nada a fazer
 	\item \textbf{Bloco não visto} - Adiciona a lista de \textit{tiles} de interesse.
-	\item \textbf{Bloco com ítens} - Adiciona a lista de \textit{itens} avistados.
+	\item \textbf{Bloco com itens} - Adiciona a lista de \textit{itens} avistados.
 	\item \textbf{Bloco com inimigos} - Adiciona a lista de inimigos avistados.
 	\item \textbf{Bloco de terminação do nível} - Adiciona a lista de alvos prioritários. 
 \end{itemize}
@@ -306,7 +310,7 @@ Este processo continua seqüencialmente junto ao descobrimento de novos blocos. 
 
 Para garantir que prioridades de escolha possam ser estabelecidades mais tarde é necessário que sejam avistados mais do que um único destino durante a descoberta, como é o caso dos algortimos de descoberta de caminho. Para se obter tais informações, ao algoritmo avistar o primeiro objeto de interesse, ele irá marcar-se como concluido e executará um número $N$ de iterações adicionais, guardando os novos destinos em uma lista para garantir que existam diversos possíveis alvos e que o BOT possa realizar uma análise mais abrangente. 
 
-Após rodar esta etapa do algoritmo, o \textit{script} possuirá suas devidas listas de \textit{tiles} avistados, ítens e inimigos, e iniciará a etapa de processamento destes dados para escolher o seu novo destino (Figura 12 - \ref{fig12}). 
+Após rodar esta etapa do algoritmo, o \textit{script} possuirá suas devidas listas de \textit{tiles} avistados, itens e inimigos, e iniciará a etapa de processamento destes dados para escolher o seu novo destino (Figura 12 - \ref{fig12}). 
 
 \begin{figure}[h]
 	\centering
@@ -316,12 +320,12 @@ Após rodar esta etapa do algoritmo, o \textit{script} possuirá suas devidas li
 \end{figure}
 
 O BOT divide a prioridade de suas escolhas baseado na proximidade, no tipo e nos \textit{parâmetros de ganância} especificados pelo tipo de perfil. 
-A IA também tem o conceito de blocos solitários, \textit{singlets}, e tenta priorizar para que não sejam deixados para traz quando não muito custoso (evitando assim movimentos adicionais). Blocos solitários se identificam por um nó do mapa não visto cercado apenas por blocos visíveis. Muitas das vezes este pedaço do mapa será uma área passável, podendo haver ítens. Isto dará um custo muito alto de movimento para voltar e re-explorar um bloco esquecido caso seja um perfil explorador ou, num caso extremo, tal bloco pode ser o bloco de saída do mapa. 
+A IA também tem o conceito de blocos solitários, \textit{singlets}, e tenta priorizar para que não sejam deixados para traz quando não muito custoso (evitando assim movimentos adicionais). Blocos solitários se identificam por um nó do mapa não visto cercado apenas por blocos visíveis. Muitas das vezes este pedaço do mapa será uma área passável, podendo haver itens. Isto dará um custo muito alto de movimento para voltar e re-explorar um bloco esquecido caso seja um perfil explorador ou, num caso extremo, tal bloco pode ser o bloco de saída do mapa. 
 
 A ordem de prioridade de escolha de alvos, sem a alteração de quaisquer \textit{parâmetros de ganância}, são:
 \begin{itemize}
 	\item 1 - \textit{Singlets} - Blocos solitários
-	\item 2 - Ítens 
+	\item 2 - Itens 
 	\item 3 - Inimigos
 	\item 4 - Blocos inexplorados
 \end{itemize}
@@ -333,7 +337,7 @@ O primeiro objeto que entrar na lista de escolhas terá o valor de escolha míni
 \end{equation}
 sendo $Dist$ sua nova distância, $dist$ a distância real do objeto e $greed\Theta$ o parâmetro de ganância do determinado tipo de objeto em questão.
 
-Desta forma é possível alterar a forma com que a IA irá colocar as suas escolhas de acordo com o resultado esperado daquele perfil. Por exemplo, um perfil explorador e ganancioso terá altos parâmetros de ganância para ítens e possuirá um maior número de iterações extras para melhor identificar ítens nas redondezas, enquanto um perfil Corajoso possuirá altos parâmetros com inimigos (Figura 13 - \ref{fig13}).
+Desta forma é possível alterar a forma com que a IA irá colocar as suas escolhas de acordo com o resultado esperado daquele perfil. Por exemplo, um perfil explorador e ganancioso terá altos parâmetros de ganância para itens e possuirá um maior número de iterações extras para melhor identificar itens nas redondezas, enquanto um perfil Corajoso possuirá altos parâmetros com inimigos (Figura 13 - \ref{fig13}).
 
 \begin{figure}[h]
 	\centering
@@ -375,10 +379,10 @@ As principais métricas identificas durante esta primeira parte do trabalho fora
 \begin{itemize}
 	\item \textbf{Movimentos}:\\
 		Indica a quantidade de passos realizados. Através desta métrica é capaz de obter-se a duração de um jogo. O tempo utilizado para a realização de um turno em um jogo do gênero possui uma grande variação, dependendo do momento em que o jogador se encontra, ele pode demorar vários segundos em um único turno em situações de batalha ou vários completar vários turnos em 1 segundo, para corredores e áreas já vistas. A conversão de turnos-segundos utilizada foi 1:1, 1 turno(movimento) igual a 1 segundo. Futuros testes com usuários reais serão necessários para ajustar esta razão de conversão.
-	\item \textbf{Ítens coletados}:\\
-		A métrica indica a quantidade de ítens coletados. Isto pode indicar se o nível criado é recompensador o suficiente para o jogador. Esta métrica pode ser tão simples quanto a quantidade de ítens coletados, ou a utilização de um fator para representação da importância do item coletado para o jogador. Pode também dividir-se em métrica sobre a quantidade de ítens de atributos, que aumentam as habilidades do jogador, ou métrica sobre a quantidade de ítens de recuperação. 
+	\item \textbf{Itens coletados}:\\
+		A métrica indica a quantidade de itens coletados. Isto pode indicar se o nível criado é recompensador o suficiente para o jogador. Esta métrica pode ser tão simples quanto a quantidade de itens coletados, ou a utilização de um fator para representação da importância do item coletado para o jogador. Pode também dividir-se em métrica sobre a quantidade de itens de atributos, que aumentam as habilidades do jogador, ou métrica sobre a quantidade de itens de recuperação. 
 	\item \textbf{Dinheiro coletado}:\\
-		Indica a quantidade de dinheiro coletado através do jogos. É possível a visualização de quão recompensador foi o jogo, e garantir que os mapas tenham um progresso consistente na evolução do jogo. Por exemplo, para manter um jogador motivado em um jogo é comum que se tenha um progresso constante: grandes variações neste fluxo pode obter efeitos negativos, como a desmotivação do jogador, ou deixar o jogo muito fácil, devido a capacidade de compra de melhores ítens muito rápido.
+		Indica a quantidade de dinheiro coletado através do jogos. É possível a visualização de quão recompensador foi o jogo, e garantir que os mapas tenham um progresso consistente na evolução do jogo. Por exemplo, para manter um jogador motivado em um jogo é comum que se tenha um progresso constante: grandes variações neste fluxo pode obter efeitos negativos, como a desmotivação do jogador, ou deixar o jogo muito fácil, devido a capacidade de compra de melhores itens muito rápido.
 	\item \textbf{Inimigos:}\\
 		Esta métrica indica a quantidade de inimigos derrotados. Também pode ser expandida para a quantidade inimigos vistos, porcentagem de inimigos vistos e/ou derrotados. 
 		Pode ser utilizada para o balanceamento dos mapas, garantindo que os mapas não possuam uma grande dificuldade. 
@@ -387,6 +391,18 @@ As principais métricas identificas durante esta primeira parte do trabalho fora
 \end{itemize}
 
 \subsection{Análise de métricas}
+
+Uma das grandes partes deste trabalho é descobrir uma forma quantitativa de qualificar de forma significante uma série de dados obtidos dos mapas como bons valores ou ruins de acordo com um intervalo ideal de entrada e através da compilação destes valores identificar se um dado mapa é qualificado como bom ou ruim para aquele tipo de resultados esperados.
+
+Uma das alternativas buscadas para a resolução deste problema foram as hipóteses de teste de comparação, utilizando o teste $t$ de Student.
+
+Uma das primeiras alternativas buscadas para se resolver este problema foi a utilização de distribuições normais de probabilidade e qualificar a porcentagem de chance dos resultados obtidos pertencerem a ela. 
+
+Esta forma de avaliação porém apresenta em sua definição um grande problema para se adequar ao problema. 
+
+Uma distribuição normal de probabilidade estima-se que os valores estejam normalmente distribuídos, isto é, quanto mais próximo a média populacional, maior será a concentração de resultados. Isto não é sempre o que acontece em jogos, a alternativa de explorar primeiro um caminho A ou um caminho B pode mudar significativamente o resultado do jogo, tornando os resultados algo mais próximo a uma série clusterizada, semente em alguns casos obtendo algo próximo ao desvio normal, e mesmo assim contendo também variações anormais.
+
+
 
 A análise das métricas será realizada de acordo com parâmetros dispostos pelo usuário da ferramenta. Desta forma, é possível testar se um dado mapa tem a qualidade esperada de um mapa casual ou um mapa mais voltado ao \textit{roguelike} clássico. 
 
@@ -460,4 +476,22 @@ Por fim, a métrica de qualidade geral do mapa $Q$ será equivalente a média ar
 \label{eqn04}
 	Q_{total} = \frac{\sum_{i=1}^{N} q_i}{N}
 \end{equation}
+
+\section{Ferramenta auxiliar}
+
+A ferramenta auxiliar foi desenvolvida no \textit{framework} Qt utilizando a linguagem C++ para ajudar no desenvolvimento e observação de mapas, uma vez que construí-los através das regras definidas pelos arquivos \textit{.map} se torna extremamente ineficaz e cansativo se feitos a mão. A ferramenta permite a criação e alteração de mapas, sejam eles feitos a mão ou mapas gerados proceduralmente em tempo de execução.
+
+A interface é adaptável e permite a utilização de janelas flutuantes ou janelas fixadas nas bordas do programa, dando o usuário a liberdade de criar a sua área de trabalho do jeito que lhe seja mais desejável. A interface de edição possui 3 modos de operação para a alteração do mapa que servem para melhor orientar o usuário da ferramenta em relação ao que está sendo feito. 
+
+O primeiro, é o modo de edição de gráficos, neste modo o usuário pode utilizar utilitários como a ferramenta "pincel" para escrita dos blocos no mapa unitáriamente e a ferramenta "retangulo" para a criação de blocos em área. Isto permite a criação mais efetiva do mapa, dando também ao usuário a opção de e selecionar os blocos que desejam ser pintados um a um, ou em grupos. 
+
+O segundo modo é pertinente a edição de entidades, neste modo o usuário poderá criar e alterar entidades para o seu mapa, criar entidades padrões, copiá-las e posicioná-las da forma que desejar. As entidades estão divididas em 3 grandes tipos genéricos: Itens, Inimigos e Dinheiro.
+
+
+O ultimo modo é o modo de caminhos, com ele é possível visualizar quais blocos são passáveis e quais blocos não serão. Ferramentas para edição rápida como o "retangulo" e a cópia em grupo também se aplicam para esse modo.
+
+Todos os utilitários da aplicação podem ser utilizados através de atalhos de teclado e ela também disponibiliza algumas opções para melhor visualização como a opção de mostrar ou não a malha de quadrados. Por fim, existem 2 botões sinalizando bandeiras que indicam aonde serão as entradas e saídas do mapa, indicando aonde o jogador começará o jogo e aonde poderá chegar para terminá-lo.
+
+Como um outro extra para a ferramenta, foi adotado uma biblioteca \textit{qscintilla} que fornece uma API para a representação de algumas funcionalidades de editores de texto e de código. Com ela foi possível construir uma mini-IDE embutida na ferramenta com a capacidade de interpretar comandos e sintaxes da linguágem \textit{lua} para a criação de \textit{scripts} procedurais e se ter a visualização dos resultados dele na sua frente no mesmo momento, indicando também os erros que ocorreram durante a interpretação dele. 
+
 

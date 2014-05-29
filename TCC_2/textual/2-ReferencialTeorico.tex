@@ -214,3 +214,30 @@ Ele utiliza uma fórmula de custo dado por:
 Sendo F o custo total para a realização da abertura do nó, G representa o custo para se mover, em linha reta do ponto inicial ao ponto e H representa o custo estimado para se mover de um determinado quadrado até o destino. Este valor é usualmente chamado de heurística por ser apenas uma estimativa do valor real.
 
 Desta forma, a cada quadrado explorado, o algoritmo irá analisar o custo de todos os seus nós descobertos, que são nós adjacentes aos explorados e explorar o nó cujo o custo de $F$ for o menor possível, repetindo este processo até que se encontre o fim. 
+
+\section{Chi Quadrado}
+A função $\chi^2$(Chi Quadrado) é um teste de hipótese que destina-se a encontrar o valor da dispersão para duas variáveis nominais, avaliando a associação dentre elas.
+Ao contrário de vários outros testes, o teste Chi Quadrado não é parametrizado, isto é, não depende de valores populacionais como média e variância.
+
+A sua base se da na comparação entre a as proporções para observar as divergências entre as frequências observadas e esperadas para dado evento. Um dos usos deste teste de hipótese é a realização de um teste de aptidão para descobrir se um dado resultado de um evento se encaixa em um determinada função esperada.
+
+Por exemplo, se um dado de 6 faces for jogado 30 vezes e seus resultados forem anotados em uma tabela. Pode-se utilizar o teste de hipótese Chi Quadrado para verificar se estes valores condizem com o esperado de um dado de 6 faces "justo", isto é, com chances iguais de obtenção dos valores.
+
+A fórmula para se calcular pode ser dada por:
+
+\begin{equation}
+\chi^2 = \sum [\frac{(o-e)^2}{e}]
+\end{equation}
+sendo 'o': valor obtido; 'e': valor esperado
+
+\section{Distribuição $t$ de Student}
+Publicada por William Sealy Gosset, cujo pseudônimo escolhido foi \textit{Student}, a distribuição $t$ representa uma curva probabilística simétrica e companiforme, semelhante a curva normal padrão com caudas mais alargadas. 
+
+A fórmula para se calcular a distribuição $t$ de Student pode ser dada por:
+
+\begin{equation}
+t = \frac{\mu - M}{\frac{s}{\sqrt{N}}}
+\end{equation}
+sendo $\mu$ a média amostral, $M$ a média populacional, $s$ a variância amostral e $N$ o número de amostras.
+
+O teste de hipótese Student $t$ é outro teste realizado muito na comparação entre dois eventos, podendo-se comparar duas amostras para se determinar se, por exemplo, seus médias populacionais são diferentes. Este processo é utilizado em situações para determinar se um dado novo método é mais efetivo que um antigo.
